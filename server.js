@@ -26,7 +26,7 @@ const start = async () => {
     console.log('Đồng bộ database thành công');
 
     // Khởi động HTTP server
-    server.listen(PORT, () => {
+    server.listen(PORT, '0.0.0.0', () => {
       console.log(`\nProTrade Server đang chạy tại http://localhost:${PORT}`);
       console.log(`WebSocket sẵn sàng`);
       console.log(`Môi trường: ${process.env.NODE_ENV}\n`);
