@@ -7,7 +7,7 @@ let io = null;
 const initSocket = (httpServer) => {
   io = new Server(httpServer, {
     cors: {
-      origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+      origin: 'https://vi-stocks.com',
       methods: ['GET', 'POST'],
       credentials: true,
     },
@@ -19,7 +19,7 @@ const initSocket = (httpServer) => {
       const token = socket.handshake.auth?.token || socket.handshake.query?.token;
       if (!token) return next(new Error('Không có token'));
 
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const decoded = jwt.verify(token, 'protrade_super_secret_key_2024');
       const user = await User.findByPk(decoded.id, { attributes: { exclude: ['password'] } });
       if (!user) return next(new Error('Người dùng không tồn tại'));
 

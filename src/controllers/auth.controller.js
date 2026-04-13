@@ -43,8 +43,8 @@ const register = async (req, res) => {
       referredBy: inviter.id
     });
     console.log(`[Auth:Register] ✅ Thành công: Đã tạo user ID ${user.id}`);
-    const token = jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET, {
-      expiresIn: process.env.JWT_EXPIRES_IN,
+    const token = jwt.sign({ id: user.id, role: user.role }, 'protrade_super_secret_key_2024', {
+      expiresIn: '7d',
     });
 
     return res.status(201).json({
@@ -98,8 +98,8 @@ const login = async (req, res) => {
 
     console.log(`[Auth:Login] ✅ Thành công: User ID ${user.id} đã đăng nhập`);
 
-    const token = jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET, {
-      expiresIn: process.env.JWT_EXPIRES_IN,
+    const token = jwt.sign({ id: user.id, role: user.role }, 'protrade_super_secret_key_2024', {
+      expiresIn: '7d',
     });
 
     return res.json({

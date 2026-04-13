@@ -2,14 +2,14 @@ require('dotenv').config();
 const { Sequelize } = require('sequelize');
 
 const sequelize = new Sequelize(
-  process.env.DB_NAME,
-  process.env.DB_USER,
-  process.env.DB_PASS,
+  'u353225927_vi_stocks',
+  'u353225927_vi_stocks',
+  '1P@fD5?og',
   {
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT || 3306,
+    host: 'srv2133.hstgr.io',
+    port: 3306,
     dialect: 'mysql',
-    logging: process.env.NODE_ENV === 'development' ? console.log : false,
+    logging: false,
     pool: {
       max: 10,
       min: 0,

@@ -6,7 +6,7 @@ const { sequelize } = require('./src/models');
 const { startGameLoop } = require('./src/services/gameLoop.service');
 const { startInvestmentSettlementLoop } = require('./src/services/investmentSettlement.service');
 
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 
 const server = http.createServer(app);
 
