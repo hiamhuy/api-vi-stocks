@@ -1,20 +1,26 @@
 require('dotenv').config();
 const { Sequelize } = require('sequelize');
+const { DB_NAME, DB_USER, DB_PASS, DB_HOST } = require('./config');
 
 const sequelize = new Sequelize(
-  'u353225927_vi_stocks',
-  'u353225927_vi_stocks',
-  '1P@fD5?og',
+  DB_NAME,
+  DB_USER,
+  DB_PASS,
   {
-    host: 'srv2133.hstgr.io',
+    host: DB_HOST,
     port: 3306,
     dialect: 'mysql',
     logging: false,
     pool: {
-      max: 10,
-      min: 0,
-      acquire: 30000,
-      idle: 10000,
+      max: 5,
+      min: 1,
+      acquire: 60000,
+      idle: 60000,
+    },
+    dialectOptions: {
+      connectTimeout: 60000,
+      enableKeepAlive: true,
+      keepAliveInitialDelay: 0,
     },
   }
 );

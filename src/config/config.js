@@ -1,0 +1,5 @@
+export const DB_NAME = 'u353225927_vi_stocks'
+export const DB_USER = 'u353225927_vi_stocks'
+export const DB_PASS = '1P@fD5?og'
+export const DB_HOST = 'srv2133.hstgr.io'
+export const URL_PUBLIC_WEB = 'https://vi-stocks.com'
