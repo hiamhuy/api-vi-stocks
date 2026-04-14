@@ -3,6 +3,9 @@ const DB_USER = 'u353225927_vi_stocks';
 const DB_PASS = '1P@fD5?og';
 const DB_HOST = 'srv2133.hstgr.io';
 const URL_PUBLIC_WEB = 'https://vi-stocks.com';
+//JWT
+const JWT_SECRET='protrade_super_secret_key_2024'
+const JWT_EXPIRES_IN='7d'
 
 module.exports = {
   DB_NAME,
@@ -10,4 +13,6 @@ module.exports = {
   DB_PASS,
   DB_HOST,
   URL_PUBLIC_WEB,
+  JWT_SECRET,
+  JWT_EXPIRES_IN
 };

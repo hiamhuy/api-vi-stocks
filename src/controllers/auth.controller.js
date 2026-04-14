@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
 const { User } = require('../models');
 const { Op } = require('sequelize');
+const { JWT_SECRET, JWT_EXPIRES_IN } = require('../config/config');
 
 // ── Đăng ký ──────────────────────────────
 const register = async (req, res) => {
@@ -43,7 +44,7 @@ const register = async (req, res) => {
       referredBy: inviter.id
     });
     console.log(`[Auth:Register] ✅ Thành công: Đã tạo user ID ${user.id}`);
-    const token = jwt.sign({ id: user.id, role: user.role }, 'protrade_super_secret_key_2024', {
+    const token = jwt.sign({ id: user.id, role: user.role }, JWT_SECRET, {
       expiresIn: '7d',
     });
 
@@ -85,12 +86,12 @@ const login = async (req, res) => {
     }
 
     if (!user.isActive) {
-      console.log(`[Auth:Login] ❌ Thất bại: Tài khoản ${email} đang bị khóa`);
+      console.log(`[Auth:Login] ❌ Thất bại: Tài khoản ${identifier} đang bị khóa`);
       return res.status(401).json({ success: false, message: 'Tài khoản đang bị khóa' });
     }
 
     const valid = await user.comparePassword(password);
-    console.log(`[Auth:Login] Kết quả so sánh mật khẩu cho ${email}: ${valid ? '✅ Khớp' : '❌ SAI'}`);
+    console.log(`[Auth:Login] Kết quả so sánh mật khẩu cho ${identifier}: ${valid ? '✅ Khớp' : '❌ SAI'}`);
 
     if (!valid) {
       return res.status(401).json({ success: false, message: 'Email hoặc mật khẩu không đúng' });
@@ -98,8 +99,8 @@ const login = async (req, res) => {
 
     console.log(`[Auth:Login] ✅ Thành công: User ID ${user.id} đã đăng nhập`);
 
-    const token = jwt.sign({ id: user.id, role: user.role }, 'protrade_super_secret_key_2024', {
-      expiresIn: '7d',
+    const token = jwt.sign({ id: user.id, role: user.role }, JWT_SECRET, {
+      expiresIn: JWT_EXPIRES_IN,
     });
 
     return res.json({

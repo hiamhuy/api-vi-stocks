@@ -1,7 +1,7 @@
 const { Server } = require('socket.io');
 const jwt = require('jsonwebtoken');
 const { User } = require('../models');
-const { URL_PUBLIC_WEB } = require('../config/config');
+const { URL_PUBLIC_WEB, JWT_SECRET } = require('../config/config');
 
 let io = null;
 
@@ -20,7 +20,7 @@ const initSocket = (httpServer) => {
       const token = socket.handshake.auth?.token || socket.handshake.query?.token;
       if (!token) return next(new Error('Không có token'));
 
-      const decoded = jwt.verify(token, 'protrade_super_secret_key_2024');
+      const decoded = jwt.verify(token, JWT_SECRET);
       const user = await User.findByPk(decoded.id, { attributes: { exclude: ['password'] } });
       if (!user) return next(new Error('Người dùng không tồn tại'));
 
