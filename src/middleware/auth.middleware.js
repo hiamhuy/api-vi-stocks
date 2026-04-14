@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { User } = require('../models');
-const { JWT_SECRET } = require('../config/config');
+
+const JWT_SECRET = 'protrade_super_secret_key_2024';
 
 const authMiddleware = async (req, res, next) => {
   try {

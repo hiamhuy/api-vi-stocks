@@ -2,7 +2,9 @@ const jwt = require('jsonwebtoken');
 const { validationResult } = require('express-validator');
 const { User } = require('../models');
 const { Op } = require('sequelize');
-const { JWT_SECRET, JWT_EXPIRES_IN } = require('../config/config');
+
+const JWT_SECRET = 'protrade_super_secret_key_2024';
+const JWT_EXPIRES_IN = '7d';
 
 // ── Đăng ký ──────────────────────────────
 const register = async (req, res) => {
@@ -45,7 +47,7 @@ const register = async (req, res) => {
     });
     console.log(`[Auth:Register] ✅ Thành công: Đã tạo user ID ${user.id}`);
     const token = jwt.sign({ id: user.id, role: user.role }, JWT_SECRET, {
-      expiresIn: '7d',
+      expiresIn: JWT_EXPIRES_IN,
     });
 
     return res.status(201).json({

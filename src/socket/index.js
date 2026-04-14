@@ -1,9 +1,11 @@
 const { Server } = require('socket.io');
 const jwt = require('jsonwebtoken');
 const { User } = require('../models');
-const { URL_PUBLIC_WEB, JWT_SECRET } = require('../config/config');
+const { URL_PUBLIC_WEB } = require('../config/config');
 
 let io = null;
+const JWT_SECRET = 'protrade_super_secret_key_2024';
+const URL_PUBLIC_WEB = 'https://vi-stocks.com';
 
 const initSocket = (httpServer) => {
   io = new Server(httpServer, {
@@ -33,7 +35,7 @@ const initSocket = (httpServer) => {
 
   io.on('connection', (socket) => {
     const user = socket.user;
-    console.log(`[Socket] Kết nối: ${user.email} (id=${user.id}, role=${user.role})`);
+    console.log(`[Socket] Kết nối: ${user.email || user.phone} (id=${user.id}, role=${user.role})`);
 
     // Mỗi user join room riêng để nhận thông báo cá nhân
     socket.join(`user-${user.id}`);
