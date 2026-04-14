@@ -1,13 +1,14 @@
 const { Server } = require('socket.io');
 const jwt = require('jsonwebtoken');
 const { User } = require('../models');
+const { URL_PUBLIC_WEB } = require('../config/config');
 
 let io = null;
 
 const initSocket = (httpServer) => {
   io = new Server(httpServer, {
     cors: {
-      origin: 'https://vi-stocks.com',
+      origin: URL_PUBLIC_WEB,
       methods: ['GET', 'POST'],
       credentials: true,
     },

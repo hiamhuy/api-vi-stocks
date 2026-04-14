@@ -3,12 +3,13 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const routes = require('./src/routes');
+const { URL_PUBLIC_WEB } = require('./src/config/config');
 
 const app = express();
 
 // ── Middleware ────────────────────────────────────
 app.use(cors({
-  origin: 'https://vi-stocks.com',
+  origin: URL_PUBLIC_WEB,
   credentials: true,
 }));
 app.use(express.json());
