@@ -36,6 +36,7 @@ const start = async () => {
     setTimeout(() => {
       startGameLoop();
       startInvestmentSettlementLoop();
+      console.log(`startGameLoop sẵn sàng`);
     }, 1000);
   } catch (err) {
     console.error('Lỗi khởi động:', err);
