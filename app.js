@@ -3,9 +3,10 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const routes = require('./src/routes');
-const { URL_PUBLIC_WEB } = require('./src/config/config');
 
 const app = express();
+
+const URL_PUBLIC_WEB = 'https://vi-stocks.com';
 
 // ── Middleware ────────────────────────────────────
 app.use(cors({

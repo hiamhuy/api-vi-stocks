@@ -1,7 +1,6 @@
 const { Server } = require('socket.io');
 const jwt = require('jsonwebtoken');
 const { User } = require('../models');
-const { URL_PUBLIC_WEB } = require('../config/config');
 
 let io = null;
 const JWT_SECRET = 'protrade_super_secret_key_2024';
